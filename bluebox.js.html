@@ -61,10 +61,11 @@ var request = require('request');
 // @external Bluebox
 
 /**
- * @author Patrick Debois
  * @constructor
  * @name Bluebox
- * @param {hash} options Specify customer_id and api_key
+ * @param {hash} options
+ * @param {hash} options.customer_id The Bluebox customer Id
+ * @param {hash} options.api_key The Bluebox API key
  */
 var Bluebox = function(options) {
 
@@ -81,6 +82,18 @@ var Bluebox = function(options) {
 
 module.exports = Bluebox;
 
+/**
+ * Credential Pair
+ * @typedef {Hash} Credential-Pair
+ * @property {string} customer_id
+ * @property {string} api_key
+ */
+
+/**
+ * Credentials to access Bluebox API
+ * @public
+ * @returns {Credential-Pair} The Bluebox credential pair in use
+ */
 Bluebox.prototype.credentials = function() {
   var self = this;
 
@@ -93,6 +106,21 @@ Bluebox.prototype.credentials = function() {
 
 var API_URL = 'https://boxpanel.bluebox.net/api/';
 
+/**
+ * Request Callback
+ * @callback {Function} Request-Callback
+ * @param {Error} error If an error occurs, else null
+ * @param {Body} body Request body
+ * @param {String} statusCode HTTP Status Code
+ */
+
+/**
+ * @param {String} method to use for the request (get, post, put , del)
+ * @param {String} url url to request
+ * @param {String} parameters variable to post to the url
+ * @param {Request-Callback} callback function to execute when request succeeds or fails
+ * @private
+ */
 Bluebox.prototype._request = function(method, url, parameters, callback) {
 
   var methodParams = hashmerge(parameters,{}); // Add credentials to methodParams

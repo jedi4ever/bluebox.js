@@ -132,7 +132,7 @@ module.exports = function(grunt) {
           changelog_version_prefix: 'v',
           changelog_insert_before: null,
           banner: null,
-          has_travis: true,
+          has_travis: false,
           github_username: "jedi4ever",
           travis_branch: "master",
           generate_footer: false,

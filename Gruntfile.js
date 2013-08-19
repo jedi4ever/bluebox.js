@@ -151,12 +151,11 @@ module.exports = function(grunt) {
       }
     },
     'gh-pages': {
-      jsdoc: {
         options: {
-          base: 'docs'
+          base: 'docs',
+          repo: 'git@github.com:jedi4ever/bluebox.js.git'
         },
-        src: ['**']
-      }
+        src: [ '**' ] // All files in the docs
     }
   });
 

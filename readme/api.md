@@ -1,11 +1,12 @@
 You can find the full detailed API descriptions at:
-<http://jedi4ever.github.com/bluebox.js>
+
+<http://jedi4ever.github.io/bluebox.js/index.html>
 
 All API calls follow the same pattern:
 
     api.method_name(options, callback);
 
-Implementated methods are:
+Implemented methods are:
 
 - block_list
 - block_details

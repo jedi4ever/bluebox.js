@@ -4,7 +4,65 @@
 
 ## Jump to Section
 
+* [Installation](#installation)
+* [Examples](#examples)
+* [API](#api)
 * [License](#license)
+
+## Installation
+[[Back To Top]](#jump-to-section)
+
+    npm install bluebox --save
+
+
+## Examples
+[[Back To Top]](#jump-to-section)
+
+    var Bluebox = require('bluebox');
+
+    var credentials = {
+      'customer_id': <insert yours>,
+      'api_key': <insert your>
+    };
+
+    var api = new Bluebox(credentials);
+
+    api.block_list({},function(err, blocks) {
+      console.log(blocks);
+    });
+
+    api.block_details({uid: 'abc1234...' },function(err, block) {
+      console.log(block);
+    });
+
+
+## API
+[[Back To Top]](#jump-to-section)
+
+You can find the full detailed API descriptions at:
+<http://jedi4ever.github.com/bluebox.js>
+
+All API calls follow the same pattern:
+
+    api.method_name(options, callback);
+
+Implementated methods are:
+
+- block_list
+- block_details
+- block_create
+- block_reboot
+- block_destroy
+
+- template_list
+- template_create
+- template_details
+- template_destroy
+
+- location_list
+
+- product_list
+
 
 ## License
 [[Back To Top]](#jump-to-section)

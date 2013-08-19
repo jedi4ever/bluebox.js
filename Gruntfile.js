@@ -146,6 +146,9 @@ module.exports = function(grunt) {
           back_to_top_custom: null
         },
         order: {
+          "installation.md": "Installation",
+          "example.md": "Examples",
+          "api.md": "API",
           "license.md": "License"
         }
       }

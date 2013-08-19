@@ -1,7 +1,1 @@
-lallszef
-szf
-qf
-qsz
-dfqs
-dfqs
-dfqsdfqzfqzeef
+    npm install bluebox --save

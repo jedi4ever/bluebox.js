@@ -1,0 +1,48 @@
+{
+  "name": "bluebox",
+  "version": "0.0.1",
+  "author": "Patrick Debois <patrick.debois@jedi.be>",
+  "private": false,
+  "scripts": {
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jedi4ever/bluebox.js.git"
+  },
+  "description": "A node library to use the Bluebox Group API",
+  "main": "lib/bluebox.js",
+  "keywords": [
+    "cloud",
+    "bluebox"
+  ],
+  "dependencies": {
+    "request": "~2.26.0",
+    "hashmerge": "~1.0.2"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "jshint": "*",
+    "jscoverage": "*",
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-release": "~0.3.5",
+    "grunt-mocha-test": "~0.5.0",
+    "blanket": "~1.1.5",
+    "grunt-docco2": "~0.1.1",
+    "grunt-html": "~0.3.3",
+    "sinon": "~1.7.3",
+    "chai": "~1.7.2",
+    "sinon-chai": "~2.4.0",
+    "expect.js": "~0.2.0",
+    "nock": "~0.22.1",
+    "grunt-jsdoc": "~0.4.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-readme-generator": "~0.3.3"
+  },
+  "license": "MIT",
+  "engine": {
+    "node": ">=0.6"
+  }
+}

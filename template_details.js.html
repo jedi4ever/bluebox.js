@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bluebox Source: requests/block_destroy.js</title>
+	<title>Bluebox Source: requests/template_details.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -49,7 +49,7 @@
 					
 
 
-		<h1 class="page-title">Source: requests/block_destroy.js</h1>
+		<h1 class="page-title">Source: requests/template_details.js</h1>
     
     <section>
         <article>
@@ -58,16 +58,17 @@
 var hashmerge = require('hashmerge');
 
 /**
- * Destroys a block
- * @function block_destroy
+ * Retrieve template details
+ *
+ * @function template_details
  * @memberof Bluebox
  * @param {Hash} options
- * @param {String} options.uuid UUID of the block to destroy
+ * @param {String} options.uuid UUID of the template to retrieve
  * @param {Function} options.callback
  * @param {function} callback
  * @instance
  */
-var block_destroy = function(options, callback) {
+var template_details = function(options, callback) {
   var self = this;
 
   var required = [ 'uuid' ];
@@ -77,7 +78,7 @@ var block_destroy = function(options, callback) {
   var settings = hashmerge(defaults, options);
   var uuid = settings.uuid;
 
-  self._request('del', '/blocks/' + uuid +'.json', settings , function(err, body, statusCode) {
+  self._request('get', '/block_templates/' + uuid +'.json', settings , function(err, body, statusCode) {
 
     if (err) {
       return callback(err) ;
@@ -96,11 +97,7 @@ var block_destroy = function(options, callback) {
 
 };
 
-/*
- * { text: 'Block destroyed.' }
- */
-
-module.exports = block_destroy;
+module.exports = template_details;
 </pre>
         </article>
     </section>

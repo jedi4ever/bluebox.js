@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bluebox Source: requests/block_destroy.js</title>
+	<title>Bluebox Source: requests/template_create.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -49,7 +49,7 @@
 					
 
 
-		<h1 class="page-title">Source: requests/block_destroy.js</h1>
+		<h1 class="page-title">Source: requests/template_create.js</h1>
     
     <section>
         <article>
@@ -58,49 +58,54 @@
 var hashmerge = require('hashmerge');
 
 /**
- * Destroys a block
- * @function block_destroy
+ * This method will take the UUID of a block and turn it into a new template.
+ * @function template_create
  * @memberof Bluebox
  * @param {Hash} options
- * @param {String} options.uuid UUID of the block to destroy
- * @param {Function} options.callback
+ * @param {String} options.id The UUID of the block you want to archive into a template
+ * @param {String} [options.description] This will record a description on the template for future use
  * @param {function} callback
  * @instance
  */
-var block_destroy = function(options, callback) {
+var template_create = function(options, callback) {
   var self = this;
 
-  var required = [ 'uuid' ];
-  var optional = [ ];
+  var required = [ 'id' ];
+  var optional = [ 'description' ];
 
   var defaults = {};
   var settings = hashmerge(defaults, options);
-  var uuid = settings.uuid;
 
-  self._request('del', '/blocks/' + uuid +'.json', settings , function(err, body, statusCode) {
+  self._request('post', '/block_templates.json', settings , function(err, body, statusCode) {
 
     if (err) {
       return callback(err) ;
     }
 
     if (statusCode === 404) {
-      return callback(new Error('Not Found - Block [' + settings.uuid + '] was not found.'));
+      return callback(new Error('Not Found - Block could not be found'));
     }
 
-    if (statusCode !== 200) {
+    if (statusCode === 409) {
+      // With custom text string
+      // This can occur in two circumstances:
+      // - First, when you've tried to run duplicate archive jobs on the same block (without the first finishing)
+      // - Second, when the description you've specified is not unique across the system.'));
+      return callback(new Error('Conflict - ' + body.text));
+    }
+
+    // Archive is in progress. Template will show up in template list when complete
+    if (statusCode !== 202) {
       return callback(new Error('Unexpected Status Code[' + statusCode + '] : ' + body )) ;
     }
+
 
     return callback(null, body);
   });
 
 };
 
-/*
- * { text: 'Block destroyed.' }
- */
-
-module.exports = block_destroy;
+module.exports = template_create;
 </pre>
         </article>
     </section>

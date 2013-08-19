@@ -64,8 +64,9 @@ var request = require('request');
  * @constructor
  * @name Bluebox
  * @param {hash} options
- * @param {hash} options.customer_id The Bluebox customer Id
- * @param {hash} options.api_key The Bluebox API key
+ * @param {string} options.customer_id The Bluebox customer Id
+ * @param {string} options.api_key The Bluebox API key
+ * @param {boolean} options.strictSSL Enables/Disables the SSL checking of the request (usefull for mocks)
  */
 var Bluebox = function(options) {
 
@@ -73,7 +74,8 @@ var Bluebox = function(options) {
 
   var defaults = {
     customer_id: null,
-    api_key: null
+    api_key: null,
+    strictSSL: true
   };
 
   /**
@@ -142,7 +144,7 @@ Bluebox.prototype._request = function(method, url, parameters, callback) {
   var requestParams = {
     url: getURL,
     form: methodParams, // Pass things through application/x-www-form-urlencoded
-    strictSSL: true,
+    strictSSL: this.settings.strictSSL,
     auth: {
       user: this.credentials().customer_id,
       password: this.credentials().api_key,

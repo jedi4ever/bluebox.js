@@ -110,12 +110,33 @@ var block_create = function(options, callback) {
       return callback(new Error('Unexpected Status Code[' + statusCode + '] : ' + body )) ;
     }
 
+
     return callback(null, body);
   });
 
 };
 
 module.exports = block_create;
+
+/*
+ { id: 'ff8c4ad7-1418-4044-8661-0dada1be2fbc',
+ hostname: 'block6106985-nqu.blueboxgrid.com',
+ description: '1 GB RAM + 20 GB Disk',
+ memory: 1073741824,
+ storage: 21474836480,
+ cpu: 0.5,
+ ips:
+  [ { address: '67.214.214.43' },
+    { address: '2607:f700:1:bd:8b40:1aa4:42c0:c8fd' } ],
+ lb_applications: [],
+ status: 'queued',
+ location_id: '37c2bd9a-3e81-46c9-b6e2-db44a25cc675',
+ product:
+  { id: '94fd37a7-2606-47f7-84d5-9000deda52ae',
+    description: 'Block 1GB Virtual Server',
+    cost: '0.15' },
+ add_to_lb_application_results: { text: 'no load balanced application specified.' } }
+*/
 </pre>
         </article>
     </section>

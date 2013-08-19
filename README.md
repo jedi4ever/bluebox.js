@@ -1,5 +1,4 @@
 # bluebox 
-[![Build Status](https://secure.travis-ci.org/jedi4ever/bluebox.png?branch=master)](http://travis-ci.org/jedi4ever/bluebox)
 
 > A node library to use the Bluebox Group API
 
@@ -9,8 +8,6 @@
 
 ## License
 [[Back To Top]](#jump-to-section)
-
-# The MIT License
 
 Copyright (c) 2010-2013 Patrick Debois
 

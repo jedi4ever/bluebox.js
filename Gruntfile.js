@@ -149,6 +149,7 @@ module.exports = function(grunt) {
           "installation.md": "Installation",
           "example.md": "Examples",
           "api.md": "API",
+          "building-and-testing.md": "Building and Testing",
           "license.md": "License"
         }
       }

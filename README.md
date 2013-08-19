@@ -7,6 +7,7 @@
 * [Installation](#installation)
 * [Examples](#examples)
 * [API](#api)
+* [Building and Testing](#building-and-testing)
 * [License](#license)
 
 ## Installation
@@ -63,6 +64,17 @@ Implemented methods are:
 - location_list
 
 - product_list
+
+
+## Building and Testing
+[[Back To Top]](#jump-to-section)
+
+The testing currently runs with mocked http requests using Nock.
+
+Note: This is work in progress. The idea is to create mocked tests & real tests.
+
+For real tests, config will be read from `config.js` .
+Create this file by copying `sample_config.js` and changing the credentials
 
 
 ## License

@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bluebox Source: requests/block_destroy.js</title>
+	<title>Bluebox Source: requests/template_destroy.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -49,7 +49,7 @@
 					
 
 
-		<h1 class="page-title">Source: requests/block_destroy.js</h1>
+		<h1 class="page-title">Source: requests/template_destroy.js</h1>
     
     <section>
         <article>
@@ -58,8 +58,8 @@
 var hashmerge = require('hashmerge');
 
 /**
- * Destroys a block
- * @function block_destroy
+ * Destroys a template
+ * @function template_destroy
  * @memberof Bluebox
  * @param {Hash} options
  * @param {String} options.uuid UUID of the block to destroy
@@ -67,24 +67,28 @@ var hashmerge = require('hashmerge');
  * @param {function} callback
  * @instance
  */
-var block_destroy = function(options, callback) {
+var template_destroy = function(options, callback) {
   var self = this;
 
-  var required = [ 'uuid' ];
+  var required = [ 'id' ];
   var optional = [ ];
 
   var defaults = {};
   var settings = hashmerge(defaults, options);
-  var uuid = settings.uuid;
+  var id = settings.id;
 
-  self._request('del', '/blocks/' + uuid +'.json', settings , function(err, body, statusCode) {
+  self._request('del', '/block_templates/' + id +'.json', settings , function(err, body, statusCode) {
 
     if (err) {
       return callback(err) ;
     }
 
     if (statusCode === 404) {
-      return callback(new Error('Not Found - Block [' + settings.uuid + '] was not found.'));
+      return callback(new Error('Not Found - Template [' + settings.id + '] was not found.'));
+    }
+
+    if (statusCode === 403) {
+      return callback(new Error('Forbidden - You don\'t have access to destroy this block template. [' + settings.id + ']'));
     }
 
     if (statusCode !== 200) {
@@ -96,11 +100,7 @@ var block_destroy = function(options, callback) {
 
 };
 
-/*
- * { text: 'Block destroyed.' }
- */
-
-module.exports = block_destroy;
+module.exports = template_destroy;
 </pre>
         </article>
     </section>

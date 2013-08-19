@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bluebox Index</title>
+	<title>Bluebox Source: requests/product_list.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -43,65 +43,65 @@
 	<div class="row-fluid">
 
 		
-		<div class="span8">
-			
+			<div class="span12">
+				
 				<div id="main">
 					
 
 
-	
-	<span class="page-title">Index</span>
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
+		<h1 class="page-title">Source: requests/product_list.js</h1>
+    
     <section>
-        <article><h1>bluebox</h1>
-<blockquote>
-<p>A node library to use the Bluebox Group API</p>
-</blockquote>
-<h2>Jump to Section</h2>
-<ul>
-<li><a href="#license">License</a></li>
-</ul>
-<h2>License</h2>
-<p><a href="#jump-to-section">[Back To Top]</a></p>
-<p>Copyright (c) 2010-2013 Patrick Debois</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.</p></article>
+        <article>
+            <pre class="sunlight-highlight-javascript linenums">'use strict';
+
+/**
+ * Returns collection of existing products
+ * @function product_list
+ * @memberof Bluebox
+ * @param {Hash} options
+ * @param {function} callback
+ * @instance
+ */
+var product_list = function(options, callback) {
+  var self = this;
+
+  self._request('get', '/block_products.json', {} , function(err, body, statusCode) {
+    if (err) {
+      return callback(err) ;
+    }
+
+    if (statusCode !== 200) {
+      return callback(new Error('Unexpected Status Code['+statusCode+'] : ' + body )) ;
+    }
+
+    callback(null, body);
+  });
+
+};
+
+module.exports = product_list;
+
+/*
+   [ { id: '94fd37a7-2606-47f7-84d5-9000deda52ae',
+description: 'Block 1GB Virtual Server',
+cost: '0.15' },
+{ id: 'b412f354-5056-4bf0-a42f-6ddd998aa092',
+description: 'Block 2GB Virtual Server',
+cost: '0.25' },
+{ id: '80be5b49-2d30-4188-bed8-38eebb21f5d1',
+description: 'Block 3GB Virtual Server',
+cost: '0.3' },
+{ id: '0cd183d3-0287-4b1a-8288-b3ea8302ed58',
+description: 'Block 4GB Virtual Server',
+cost: '0.35' },
+{ id: 'b9b87a5b-2885-4a2e-b434-44a163ca6251',
+description: 'Block 8GB Virtual Server',
+cost: '0.45' } ]
+*/
+</pre>
+        </article>
     </section>
-
-
 
 
 
@@ -115,10 +115,6 @@ THE SOFTWARE.</p></article>
 					
 			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
 			
 			<br clear="both">
 		</div>

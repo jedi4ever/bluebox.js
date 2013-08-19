@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Bluebox Index</title>
+	<title>Bluebox Source: requests/block_list.js</title>
 
 	<!--[if lt IE 9]>
 	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -43,65 +43,61 @@
 	<div class="row-fluid">
 
 		
-		<div class="span8">
-			
+			<div class="span12">
+				
 				<div id="main">
 					
 
 
-	
-	<span class="page-title">Index</span>
-	
-	
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	
-
-
-
-
-
+		<h1 class="page-title">Source: requests/block_list.js</h1>
+    
     <section>
-        <article><h1>bluebox</h1>
-<blockquote>
-<p>A node library to use the Bluebox Group API</p>
-</blockquote>
-<h2>Jump to Section</h2>
-<ul>
-<li><a href="#license">License</a></li>
-</ul>
-<h2>License</h2>
-<p><a href="#jump-to-section">[Back To Top]</a></p>
-<p>Copyright (c) 2010-2013 Patrick Debois</p>
-<p>Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the &quot;Software&quot;), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:</p>
-<p>The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.</p>
-<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.</p></article>
+        <article>
+            <pre class="sunlight-highlight-javascript linenums">'use strict';
+
+/**
+ * Returns collection of existing block servers.
+ * @function block_list
+ * @memberof Bluebox
+ * @param {Hash} options
+ * @param {function} callback
+ * @instance
+ */
+var block_list = function(options, callback) {
+  var self = this;
+
+  self._request('get', '/blocks.json', {} , function(err, body, statusCode) {
+
+    if (err) {
+      return callback(err) ;
+    }
+
+    if (statusCode !== 200) {
+      return callback(new Error('Unexpected Status Code['+statusCode+'] : ' + body )) ;
+    }
+
+    callback(null, body);
+  });
+
+};
+
+module.exports = block_list;
+
+/*
+    [ { id: '767d24f2-59d1-4d39-9b03-140d6319be29',
+    hostname: 'wonderme.c46062.blueboxgrid.com',
+    description: '1 GB RAM + 20 GB Disk',
+    memory: 1073741824,
+    storage: 21474836480,
+    cpu: 0.5,
+    ips: [ [Object], [Object] ],
+    lb_applications: [],
+    status: 'queued',
+    location_id: '37c2bd9a-3e81-46c9-b6e2-db44a25cc675' } ]
+*/
+</pre>
+        </article>
     </section>
-
-
 
 
 
@@ -115,10 +111,6 @@ THE SOFTWARE.</p></article>
 					
 			</div>
 
-			
-			<div class="span3">
-				<div id="toc"></div>
-			</div>
 			
 			<br clear="both">
 		</div>

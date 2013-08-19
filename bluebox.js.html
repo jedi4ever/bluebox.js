@@ -76,7 +76,14 @@ var Bluebox = function(options) {
     api_key: null
   };
 
-  self.settings = hashmerge( defaults , options);
+  /**
+   * Settings as used by the Bluebox object
+   * @instance
+   * @memberof Bluebox
+   * @name settings
+   * @type {hash}
+   */
+  this.settings = hashmerge( defaults , options);
 
 };
 
@@ -104,7 +111,13 @@ Bluebox.prototype.credentials = function() {
   return credentials;
 };
 
-var API_URL = 'https://boxpanel.bluebox.net/api/';
+/**
+ * Base URL that is used to make requests
+ * @const {String} API_URL
+ * @memberof Bluebox
+ * @static
+ */
+Bluebox.API_URL = 'https://boxpanel.bluebox.net/api/';
 
 /**
  * Request Callback
@@ -124,7 +137,7 @@ var API_URL = 'https://boxpanel.bluebox.net/api/';
 Bluebox.prototype._request = function(method, url, parameters, callback) {
 
   var methodParams = hashmerge(parameters,{}); // Add credentials to methodParams
-  var getURL = API_URL + '/' + url ;
+  var getURL = Bluebox.API_URL + '/' + url ;
 
   var requestParams = {
     url: getURL,

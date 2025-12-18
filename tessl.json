@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "patrickdebois/nextjs-llmtxt": {
+      "version": "0.0.11"
+    }
+  }
+}

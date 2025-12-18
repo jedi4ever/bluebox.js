@@ -1,0 +1,7 @@
+{
+  "name": "tessl/npm-bluebox",
+  "version": "0.0.2",
+  "docs": "docs/index.md",
+  "describes": "pkg:npm/bluebox@0.0.2",
+  "summary": "A Node.js client library for interacting with the Bluebox Group cloud infrastructure API"
+}

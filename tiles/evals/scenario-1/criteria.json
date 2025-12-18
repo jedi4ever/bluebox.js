@@ -1,0 +1,46 @@
+{
+  "context": "This evaluation assesses the engineer's proficiency in using the bluebox package API for cloud infrastructure management. The focus is on correctly utilizing specific API methods, properly formatting parameters (especially load balancer configurations), handling asynchronous operations, and understanding the bluebox API's callback patterns and error handling.",
+  "type": "weighted_checklist",
+  "checklist": [
+    {
+      "name": "Bluebox Client Initialization",
+      "description": "Correctly instantiates the Bluebox client by passing credentials object containing customer_id and api_key to the constructor. Uses 'new Bluebox(credentials)' pattern.",
+      "max_score": 8
+    },
+    {
+      "name": "block_create Method Usage",
+      "description": "Uses the block_create method with correct parameters: product, template, location, password, ssh_public_key (or ssh_key), hostname, and username. Properly invokes the callback-based API method.",
+      "max_score": 15
+    },
+    {
+      "name": "Load Balancer Parameters",
+      "description": "Correctly formats load balancer parameters (lb_applications, lb_services, lb_backends) as comma-separated strings without whitespace when passing arrays to block_create. Converts array inputs like ['uuid1', 'uuid2'] to 'uuid1,uuid2' format.",
+      "max_score": 18
+    },
+    {
+      "name": "block_details Method Usage",
+      "description": "Uses the block_details method with correct parameter format (uuid or uid) to retrieve server information and status. Properly handles the callback to access returned block data.",
+      "max_score": 12
+    },
+    {
+      "name": "Status Polling Implementation",
+      "description": "Implements polling logic using block_details to monitor server status field. Checks for status values like 'queued', 'building', 'running', and 'error'. Implements appropriate polling intervals and handles state transitions.",
+      "max_score": 15
+    },
+    {
+      "name": "template_create Method Usage",
+      "description": "Uses the template_create method with correct parameters (id for the block UUID and optional description). Properly handles the callback and understands the asynchronous nature (HTTP 202) of template creation.",
+      "max_score": 15
+    },
+    {
+      "name": "block_list Method Usage",
+      "description": "Uses the block_list method with empty options object to retrieve all servers. Properly handles the callback to access the returned array of blocks.",
+      "max_score": 10
+    },
+    {
+      "name": "Callback Error Handling",
+      "description": "Properly implements Node.js error-first callback pattern (err, result) for all bluebox API methods. Checks for errors before processing results and handles API-specific error conditions.",
+      "max_score": 7
+    }
+  ]
+}

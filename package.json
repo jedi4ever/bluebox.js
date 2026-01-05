@@ -1,6 +1,6 @@
 {
   "name": "bluebox",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Patrick Debois <patrick.debois@jedi.be>",
   "private": false,
   "scripts": {
@@ -10,41 +10,44 @@
     "type": "git",
     "url": "https://github.com/jedi4ever/bluebox.js.git"
   },
+  "bugs": {
+    "url": "https://github.com/jedi4ever/bluebox.js/issues"
+  },
+  "homepage": "https://github.com/jedi4ever/bluebox.js#readme",
   "description": "A node library to use the Bluebox Group API",
   "main": "lib/bluebox.js",
   "keywords": [
     "cloud",
-    "bluebox"
+    "bluebox",
+    "api",
+    "hosting"
   ],
   "dependencies": {
-    "request": "~2.26.0",
-    "hashmerge": "~1.0.2"
+    "request": "^2.88.2",
+    "hashmerge": "^1.0.2"
   },
   "devDependencies": {
-    "mocha": "*",
-    "jshint": "*",
-    "jscoverage": "*",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-watch": "~0.4.4",
-    "grunt-release": "~0.3.5",
-    "grunt-mocha-test": "~0.5.0",
-    "blanket": "~1.1.5",
-    "grunt-docco2": "~0.1.1",
-    "grunt-html": "~0.3.3",
-    "sinon": "~1.7.3",
-    "chai": "~1.7.2",
-    "sinon-chai": "~2.4.0",
-    "expect.js": "~0.2.0",
-    "nock": "~0.22.1",
-    "grunt-jsdoc": "~0.4.0",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-readme-generator": "~0.3.3",
-    "grunt-gh-pages": "~0.7.0",
-    "async": "~0.2.9"
+    "async": "^3.2.5",
+    "blanket": "^1.2.3",
+    "chai": "^4.3.10",
+    "expect.js": "^0.3.1",
+    "grunt": "^1.6.1",
+    "grunt-contrib-clean": "^2.0.1",
+    "grunt-contrib-jshint": "^3.2.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-gh-pages": "^4.0.0",
+    "grunt-html": "^17.1.0",
+    "grunt-jsdoc": "^2.4.1",
+    "grunt-mocha-test": "^0.13.3",
+    "grunt-release": "^0.14.0",
+    "jshint": "^2.13.6",
+    "mocha": "^10.2.0",
+    "nock": "^13.5.0",
+    "sinon": "^17.0.1",
+    "sinon-chai": "^3.7.0"
   },
   "license": "MIT",
-  "engine": {
-    "node": ">=0.6"
+  "engines": {
+    "node": ">=14.0.0"
   }
 }

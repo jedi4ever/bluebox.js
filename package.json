@@ -4,7 +4,9 @@
   "author": "Patrick Debois <patrick.debois@jedi.be>",
   "private": false,
   "scripts": {
-    "test": "grunt test"
+    "test": "mocha 'test/**/*.js'",
+    "lint": "eslint lib test",
+    "lint:fix": "eslint lib test --fix"
   },
   "repository": {
     "type": "git",
@@ -28,23 +30,11 @@
   },
   "devDependencies": {
     "async": "^3.2.5",
-    "blanket": "^1.2.3",
     "chai": "^4.3.10",
-    "expect.js": "^0.3.1",
-    "grunt": "^1.6.1",
-    "grunt-contrib-clean": "^2.0.1",
-    "grunt-contrib-jshint": "^3.2.0",
-    "grunt-contrib-watch": "^1.1.0",
-    "grunt-gh-pages": "^4.0.0",
-    "grunt-html": "^17.1.0",
-    "grunt-jsdoc": "^2.4.1",
-    "grunt-mocha-test": "^0.13.3",
-    "grunt-release": "^0.14.0",
-    "jshint": "^2.13.6",
+    "eslint": "^8.56.0",
     "mocha": "^10.2.0",
     "nock": "^13.5.0",
-    "sinon": "^17.0.1",
-    "sinon-chai": "^3.7.0"
+    "sinon": "^17.0.1"
   },
   "license": "MIT",
   "engines": {

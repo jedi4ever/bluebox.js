@@ -57,21 +57,9 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'list',
-          require: 'coverage/blanket'
+          reporter: 'list'
         },
         src: ['test/**/*.js']
-      },
-      coverage: {
-        options: {
-          reporter: 'html-cov',
-          // use the quiet flag to suppress the mocha console output
-          quiet: true
-        },
-        src: ['test/**/*.js'],
-        // specify a destination file to capture the mocha
-        // output (the quiet option does not suppress this)
-        dest: 'coverage.html'
       }
     },
 

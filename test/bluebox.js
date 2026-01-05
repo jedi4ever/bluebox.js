@@ -202,7 +202,10 @@ it('block_destroy should error on a non-existing block', function(done) {
 it('block_create should create a new block', function(done) {
   // Creation might take > 10sec
      var create_request = nock('https://boxpanel.bluebox.net:443')
-     .post('/api///blocks.json')
+     .post('/api///blocks.json', function(body) {
+       // nock v13 passes body as object for form-urlencoded
+       return body.product && body.template && body.password && body.location;
+     })
      .reply(200, "{\"id\":\"1f843100-f46d-44d0-bf63-ecee37d78e3d\",\"hostname\":\"block6109823-se7.blueboxgrid.com\",\"description\":\"1 GB RAM + 20 GB Disk\",\"memory\":1073741824,\"storage\":21474836480,\"cpu\":0.5,\"ips\":[{\"address\":\"67.214.220.163\"},{\"address\":\"2607:f700:1:d1:9c0d:d37f:39de:97a9\"}],\"lb_applications\":[],\"status\":\"queued\",\"location_id\":\"37c2bd9a-3e81-46c9-b6e2-db44a25cc675\",\"product\":{\"id\":\"94fd37a7-2606-47f7-84d5-9000deda52ae\",\"description\":\"Block 1GB Virtual Server\",\"cost\":\"0.15\"},\"add_to_lb_application_results\":{\"text\":\"no load balanced application specified.\"}}", { 'content-type': 'application/json; charset=utf-8',
      'content-length': '553',
 status: '200',
@@ -239,7 +242,7 @@ it('block_detailsshould show the details of an exiting block', function(done) {
 
   var block_details = nock('https://boxpanel.bluebox.net:443')
   .get('/api///blocks/' +  createdBlockId + '.json')
-  .query(true)
+  .query(true) // Accept any query params - uuid is sent in form body, not query string
   .reply(200, "{\"id\":\"a124ca83-c026-402d-bec2-9ab2bcf8b9b7\",\"hostname\":\"block6115604-s5a.blueboxgrid.com\",\"description\":\"1 GB RAM + 20 GB Disk\",\"memory\":1073741824,\"storage\":21474836480,\"cpu\":0.5,\"ips\":[{\"address\":\"67.214.216.150\"},{\"address\":\"2607:f700:1:cb:26a2:23e7:b787:de3e\"}],\"lb_applications\":[],\"status\":\"running\",\"location_id\":\"37c2bd9a-3e81-46c9-b6e2-db44a25cc675\",\"product\":{\"id\":\"" + createdBlockId + "\",\"description\":\"Block 1GB Virtual Server\",\"cost\":\"0.15\"}}", {
     'content-type': 'application/json; charset=utf-8',
     'content-length': '471',
@@ -266,7 +269,10 @@ it('block_destroy should destroy existing block', function(done) {
   }
 
   var destroy_request = nock('https://boxpanel.bluebox.net:443')
-  .delete('/api///blocks/' +  createdBlockId +'.json')
+  .delete('/api///blocks/' +  createdBlockId +'.json', function(body) {
+    // nock v13 passes body as object for form-urlencoded
+    return body.uuid === createdBlockId;
+  })
   .reply(200, "{\"text\":\"Block destroyed.\"}", {
     'content-type': 'application/json; charset=utf-8',
     'content-length': '27',

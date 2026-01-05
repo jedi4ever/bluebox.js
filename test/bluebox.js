@@ -182,7 +182,9 @@ it('block_destroy should error on a non-existing block', function(done) {
   var options = { uuid: 'some-really-not-existing-block' } ;
 
   var block_destroy_non_existing = nock('https://boxpanel.bluebox.net:443')
-  .delete('/api/blocks/some-really-not-existing-block.json', "uuid=some-really-not-existing-block")
+  .delete('/api/blocks/some-really-not-existing-block.json', function(body) {
+    return body.uuid === 'some-really-not-existing-block';
+  })
   .reply(404, "{\"text\":\"Block could not be found with that UUID.\",\"error\":404}", {
     'content-type': 'application/json; charset=utf-8',
     'content-length': '63',

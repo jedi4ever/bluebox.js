@@ -1,103 +1,107 @@
-# bluebox 
+# bluebox
 
-> A node library to use the Bluebox Group API
-
-## Jump to Section
-
-* [Installation](#installation)
-* [Examples](#examples)
-* [API](#api)
-* [Building and Testing](#building-and-testing)
-* [License](#license)
+> A Node.js library to interact with the Bluebox Group API
 
 ## Installation
-[[Back To Top]](#jump-to-section)
 
-    npm install bluebox --save
+```bash
+npm install bluebox --save
+```
 
+**Requirements:** Node.js >= 14.0.0
 
-## Examples
-[[Back To Top]](#jump-to-section)
+## Usage
 
-    var Bluebox = require('bluebox');
+```javascript
+var Bluebox = require('bluebox');
 
-    var credentials = {
-      'customer_id': <insert yours>,
-      'api_key': <insert your>
-    };
+var api = new Bluebox({
+  customer_id: '<your-customer-id>',
+  api_key: '<your-api-key>'
+});
 
-    var api = new Bluebox(credentials);
+// List all blocks (virtual servers)
+api.block_list({}, function(err, blocks) {
+  console.log(blocks);
+});
 
-    api.block_list({},function(err, blocks) {
-      console.log(blocks);
-    });
+// Get block details
+api.block_details({ uuid: 'abc1234...' }, function(err, block) {
+  console.log(block);
+});
 
-    api.block_details({uid: 'abc1234...' },function(err, block) {
-      console.log(block);
-    });
+// Create a new block
+api.block_create({
+  product: '<product-uuid>',
+  template: '<template-uuid>',
+  password: '<root-password>',
+  location: '<location-uuid>'
+}, function(err, block) {
+  console.log(block);
+});
+```
 
+## API Methods
 
-## API
-[[Back To Top]](#jump-to-section)
+All API calls follow the pattern: `api.method_name(options, callback)`
 
-You can find the full detailed API descriptions at:
+### Blocks (Virtual Servers)
+- `block_list` - List all blocks
+- `block_details` - Get details of a specific block
+- `block_create` - Create a new block
+- `block_reboot` - Reboot a block
+- `block_destroy` - Destroy a block
 
-<http://jedi4ever.github.io/bluebox.js/index.html>
+### Templates
+- `template_list` - List available templates
+- `template_create` - Create a template from a block
+- `template_details` - Get template details
+- `template_destroy` - Destroy a template
 
-All API calls follow the same pattern:
+### Resources
+- `location_list` - List available data center locations
+- `product_list` - List available products/plans
 
-    api.method_name(options, callback);
+## Development
 
-Implemented methods are:
+### Setup
 
-- block_list
-- block_details
-- block_create
-- block_reboot
-- block_destroy
+```bash
+npm install
+```
 
-- template_list
-- template_create
-- template_details
-- template_destroy
+### Running Tests
 
-- location_list
+```bash
+npm test
+```
 
-- product_list
+### Linting
 
+```bash
+npm run lint
+npm run lint:fix  # Auto-fix issues
+```
 
-## Building and Testing
-[[Back To Top]](#jump-to-section)
+## Configuration
 
-The testing currently runs with mocked http requests using Nock.
+For local development, create a `config.js` file from the sample:
 
-Note: This is work in progress. The idea is to create mocked tests & real tests.
+```bash
+cp sample_config.js config.js
+```
 
-For real tests, config will be read from `config.js` .
-Create this file by copying `sample_config.js` and changing the credentials
+Then edit `config.js` with your credentials:
 
+```javascript
+module.exports = {
+  customer_id: 'your-customer-id',
+  api_key: 'your-api-key'
+};
+```
 
 ## License
-[[Back To Top]](#jump-to-section)
 
-Copyright (c) 2010-2013 Patrick Debois
+MIT License - Copyright (c) 2010-2013 Patrick Debois
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-
+See [License](License) for details.
